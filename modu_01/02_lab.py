@@ -6,6 +6,7 @@ import tensorflow as tf
 #trainable variable이다. 학습과정에서 변경될 수 있는 값이다.
 # x_train = [1, 2, 3]
 # y_train = [1, 2, 3]
+#placeholder를 사용해서 출력단에서 값 입력받기
 X = tf.placeholder(tf.float32)
 Y = tf.placeholder(tf.float32)
 
