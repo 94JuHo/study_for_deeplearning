@@ -4,6 +4,9 @@ from sklearn.datasets import make_blobs
 import matplotlib.pyplot as plt
 import torch.nn.functional as F
 
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu") #gpu사용
+print(device)
+
 n_dim = 2
 x_train, y_train = make_blobs(n_samples=80, n_features=n_dim, centers=[[1, 1], [-1, -1], [1, -1], [-1, 1]],
                               shuffle=True, cluster_std=0.3)
@@ -81,10 +84,10 @@ model.eval()
 test_loss = criterion(model(x_test).squeeze(), y_test)
 print('After Training, test loss is {}'.format(test_loss.item()))
 
-torch.save(model.state_dict(), '../model/model.pt')
+torch.save(model.state_dict(), './model/model.pt')
 print('state_dict format of the model: {}'.format(model.state_dict()))
 
 new_model = NeuralNet(2, 5)
-new_model.load_state_dict(torch.load('../model/model.pt'))
+new_model.load_state_dict(torch.load('model/model.pt'))
 new_model.eval()
 print('벡터[-1, 1]이 레이블 1을 가질 확률은 {}'.format(new_model(torch.FloatTensor([-1,1])).item()))
