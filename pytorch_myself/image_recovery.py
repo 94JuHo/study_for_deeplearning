@@ -1,9 +1,9 @@
+#%%
 import torch
 import pickle
 import matplotlib.pyplot as plot
 
 broken_image = torch.FloatTensor( pickle.load(open('./broken_image_t.p', 'rb'), encoding='latin1'))
-
 plot.imshow(broken_image.view(100, 100))
 
 def weird_function(x, n_iter=5):
@@ -25,7 +25,7 @@ def distance_loss(hypothesis, broken_image):
 random_tensor = torch.randn(10000, dtype=torch.float)
 lr = 0.8
 
-for i in range(0, 20000):
+for i in range(0, 20001):
     random_tensor.requires_grad_(True)
     hypothesis = weird_function(random_tensor)
     loss = distance_loss(hypothesis, broken_image)
@@ -37,3 +37,5 @@ for i in range(0, 20000):
         print('Loss at {} = {}'.format(i, loss.item()))
 
 plot.imshow(random_tensor.view(100, 100).data)
+
+# %%
