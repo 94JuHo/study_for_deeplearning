@@ -6,6 +6,7 @@ import matplotlib.pyplot as plot
 broken_image = torch.FloatTensor( pickle.load(open('./broken_image_t.p', 'rb'), encoding='latin1'))
 plot.imshow(broken_image.view(100, 100))
 
+#%%
 def weird_function(x, n_iter=5):
     h = x
     filt = torch.tensor([-1./3, 1./3, -1./3])
@@ -37,5 +38,3 @@ for i in range(0, 20001):
         print('Loss at {} = {}'.format(i, loss.item()))
 
 plot.imshow(random_tensor.view(100, 100).data)
-
-# %%
