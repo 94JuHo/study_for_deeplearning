@@ -1,3 +1,4 @@
+#%%
 import torch
 import numpy
 from sklearn.datasets import make_blobs
@@ -84,10 +85,12 @@ model.eval()
 test_loss = criterion(model(x_test).squeeze(), y_test)
 print('After Training, test loss is {}'.format(test_loss.item()))
 
-torch.save(model.state_dict(), './model/model.pt')
+torch.save(model.state_dict(), '../model/model.pt')
 print('state_dict format of the model: {}'.format(model.state_dict()))
 
 new_model = NeuralNet(2, 5)
-new_model.load_state_dict(torch.load('model/model.pt'))
+new_model.load_state_dict(torch.load('../model/model.pt'))
 new_model.eval()
 print('벡터[-1, 1]이 레이블 1을 가질 확률은 {}'.format(new_model(torch.FloatTensor([-1,1])).item()))
+
+# %%

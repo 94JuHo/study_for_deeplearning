@@ -26,7 +26,7 @@ def distance_loss(hypothesis, broken_image):
 random_tensor = torch.randn(10000, dtype=torch.float)
 lr = 0.8
 
-for i in range(0, 20001):
+for i in range(0, 100001):
     random_tensor.requires_grad_(True)
     hypothesis = weird_function(random_tensor)
     loss = distance_loss(hypothesis, broken_image)

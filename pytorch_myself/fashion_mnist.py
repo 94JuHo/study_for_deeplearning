@@ -1,3 +1,4 @@
+#%%
 from torchvision import datasets, transforms, utils
 from torch.utils import data
 
@@ -39,7 +40,7 @@ npimg = img.numpy()
 plt.figure(figsize=(10, 7))
 plt.imshow(np.transpose(npimg, (1, 2, 0)))
 plt.show()
-
+#%%
 CLASSES = {
     0: 'T-shirt/top',
     1: 'Trouser',
@@ -63,3 +64,5 @@ item_npimg = item_img.squeeze().numpy()
 plt.title(CLASSES[labels[idx].item()])
 plt.imshow(item_npimg, cmap='gray')
 plt.show()
+
+# %%
