@@ -1,3 +1,4 @@
+# %%
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -6,6 +7,7 @@ from torchvision import transforms, datasets
 
 USE_CUDA = torch.cuda.is_available()
 DEVICE = torch.device("cuda" if USE_CUDA else "cpu")
+print(DEVICE)
 
 EPOCHS = 30
 BATCH_SIZE = 64
@@ -89,3 +91,6 @@ for epoch in range(1, EPOCHS+1):
     train(model, train_loader, optimizer)
     test_loss, test_accuracy = evaluate(model, test_loader)
     print('[{}] Test Loss: {:.4f}, Accuracy: {:.2f}%'.format(epoch, test_loss, test_accuracy))
+
+
+# %%

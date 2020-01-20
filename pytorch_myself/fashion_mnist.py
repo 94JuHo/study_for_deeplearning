@@ -64,5 +64,3 @@ item_npimg = item_img.squeeze().numpy()
 plt.title(CLASSES[labels[idx].item()])
 plt.imshow(item_npimg, cmap='gray')
 plt.show()
-
-# %%

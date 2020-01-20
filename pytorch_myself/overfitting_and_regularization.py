@@ -1,3 +1,4 @@
+#%%
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -12,7 +13,7 @@ EPOCHS = 50
 BATCH_SIZE = 64
 
 train_loader = torch.utils.data.DataLoader(
-    datasets.MNIST('./.data',
+    datasets.MNIST('./data',
     train=True,
     download=True,
     transform=transforms.Compose([
@@ -24,7 +25,7 @@ train_loader = torch.utils.data.DataLoader(
 )
 
 test_loader = torch.utils.data.DataLoader(
-    datasets.MNIST('./.data', 
+    datasets.MNIST('./data', 
     train=False,
     transform=transforms.Compose([
         transforms.ToTensor(),
@@ -84,3 +85,5 @@ for epoch in range(1, EPOCHS+1):
     train(model, train_loader, optimizer)
     test_loss, test_accuracy = evaluate(model, test_loader)
     print('[{}] Test Loss: {:.4f}, Accuracy:{:.2f}%'.format(epoch, test_loss, test_accuracy))
+
+# %%
