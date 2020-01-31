@@ -1,3 +1,4 @@
+#%%
 import torch
 import torchvision
 import torch.nn.functional as F
@@ -95,3 +96,44 @@ for epoch in range(1, EPOCH+1):
         a[1][i].imshow(img, cmap='gray')
         a[1][i].set_xticks(()); a[1][i].set_yticks(())
     plt.show()
+
+# %%
+view_data = trainset.train_data[:200].view(-1, 28*28)
+view_data = view_data.type(torch.FloatTensor)/255.
+test_x = view_data.to(DEVICE)
+encoded_data, _ = autoencoder(test_x)
+encoded_data = encoded_data.to("cpu")
+
+CLASSES ={
+    0: 'T-shirt/top',
+    1: 'Trouser',
+    2: 'Pullover',
+    3: 'Dress',
+    4: 'Coat',
+    5: 'Sandal',
+    6: 'Shirt',
+    7: 'Sneaker',
+    8: 'Bag',
+    9: 'Ankle boot'
+}
+
+fig = plt.figure(figsize=(10, 8))
+ax = Axes3D(fig)
+
+X = encoded_data.data[:, 0].numpy()
+Y = encoded_data.data[:, 1].numpy()
+Z = encoded_data.data[:, 2].numpy()
+
+labels = trainset.train_labels[:200].numpy()
+
+for x, y, z, s in zip(X, Y, Z, labels):
+    name = CLASSES[s]
+    color = cm.rainbow(int(255*s/9))
+    ax.text(x, y, z, name, backgroundcolor=color)
+
+ax.set_xlim(X.min(), X.max())
+ax.set_ylim(Y.min(), Y.max())
+ax.set_zlim(Z.min(), Z.max())
+plt.show()
+
+# %%
