@@ -1,3 +1,4 @@
+#%%
 import hym
 import random
 import math
