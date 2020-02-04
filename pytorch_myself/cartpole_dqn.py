@@ -1,12 +1,12 @@
 #%%
-import hym
+import gym
 import random
 import math
 import torch
 import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
-from collenctions import deque
+from collections import deque
 import matplotlib.pyplot as plt
 
 EPISODES = 50
@@ -52,8 +52,8 @@ class DQNAgent:
         rewards = torch.cat(rewards)
         next_states = torch.cat(next_states)
 
-        current_q = self.model(state).gather(1, actions)
-        max_next_q = self.model(next_state).detach().max(1)[0]
+        current_q = self.model(states).gather(1, actions) 
+        max_next_q = self.model(next_states).detach().max(1)[0]
         expected_q = rewards + (GAMMA * max_next_q)
 
         loss = F.mse_loss(current_q.squeeze(), expected_q)
@@ -90,3 +90,5 @@ for e in range(1, EPISODES+1):
 plt.plot(score_history)
 plt.ylabel('score')
 plt.show()
+
+# %%
